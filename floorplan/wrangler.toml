@@ -7,3 +7,6 @@ main = "worker.js"
 compatibility_date = "2026-09-01"
 workers_dev = true
 routes = [{ pattern = "floorplan.theschool.nyc", custom_domain = true }]
+
+# The site Worker (wrangler.toml at the repo root), called directly; see worker.js.
+services = [{ binding = "SITE", service = "the-old-school" }]
