@@ -4,7 +4,7 @@
 //   npm run test:local              against `wrangler dev` on :8787 (run it from the repo root first)
 //
 // Nothing here creates a real submission: the founding-member POST and the Stripe hand-off are
-// intercepted in the browser, and the event-inquiry check only submits an empty form (rejected
+// intercepted in the browser, and the event form check only submits an empty form (rejected
 // before anything is stored or posted to Slack).
 import { chromium, devices } from "playwright";
 
@@ -12,7 +12,8 @@ const SITE = (process.env.SITE || "https://theschool.nyc").replace(/\/+$/, "");
 const SHEET = (process.env.SHEET || "https://sheet.theschool.nyc").replace(/\/+$/, "");
 const FORMS = (process.env.FORMS || "https://form.theschool.nyc").replace(/\/+$/, "");
 const LOCAL = !SITE.startsWith("https://theschool.nyc");
-const EVENT_FORM = "https://form.theschool.nyc/f/event-inquiry";
+const EVENT_FORM = "https://form.theschool.nyc/f/events";
+const FLOORPLAN = (process.env.FLOORPLAN || "https://floorplan.theschool.nyc").replace(/\/+$/, "");
 const OLD_COPY = /old school|greenpoint(?!-compute)/i;
 
 /** Absolute theschool.nyc URLs in tags point at production; locally, read them from SITE. */
@@ -200,9 +201,9 @@ for (const base of sheetBases) {
 // ── forms ────────────────────────────────────────────────────────────────────
 
 await test("forms: event inquiry renders with preview; empty submit is rejected", async ({ page, ctx }) => {
-  const res = await page.goto(`${FORMS}/f/event-inquiry`);
-  check(res.status() === 200, `event-inquiry ${res.status()}`);
-  check((await page.title()) === "Submit Inquiry", "form title");
+  const res = await page.goto(`${FORMS}/f/events`);
+  check(res.status() === 200, `events ${res.status()}`);
+  check((await page.title()) === "Host an event", "form title");
   const img = await page.locator('meta[property="og:image"]').getAttribute("content");
   check((await status(ctx, img)).code === 200, "form og:image");
   await page.locator('form button[type="submit"]').click();
@@ -218,10 +219,23 @@ await test("forms: founding member says Williamsburg", async ({ page }) => {
   check(text.includes("Williamsburg") && !OLD_COPY.test(text), "founding-member copy");
 });
 
+// ── floor plan + room index ──────────────────────────────────────────────────
+
+if (!LOCAL) {
+  await test("floorplan.theschool.nyc serves the floor plan and the room index", async ({ page, ctx }) => {
+    const res = await page.goto(`${FLOORPLAN}/`);
+    check(res.status() === 200, `floorplan ${res.status()}`);
+    check(/Floorplan/i.test(await page.title()), "floorplan title");
+    const rooms = await (await ctx.request.get(`${FLOORPLAN}/rooms.json`)).json();
+    const names = rooms.rooms.map((r) => r.name);
+    check(names.includes("Auditorium") && new Set(names).size === names.length, "rooms.json names");
+  });
+}
+
 // ── hygiene ──────────────────────────────────────────────────────────────────
 
 await test("plumbing is not served", async ({ ctx }) => {
-  for (const p of ["/wrangler.toml", "/.git/HEAD", "/e2e/package.json", "/e2e/run.mjs", "/sheet/wrangler.toml", "/.assetsignore", "/CNAME"]) {
+  for (const p of ["/wrangler.toml", "/.git/HEAD", "/e2e/package.json", "/e2e/run.mjs", "/sheet/wrangler.toml", "/.assetsignore", "/CNAME", "/scripts/rooms.mjs", "/floorplan/worker.js"]) {
     const { code } = await status(ctx, `${SITE}${p}`);
     check(code === 404, `${p} -> ${code}`);
   }
