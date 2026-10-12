@@ -1,0 +1,9 @@
+# The School: floor plan at floorplan.theschool.nyc (proxies theschool.nyc/floorplan and its
+# images; also serves /rooms.json, the room index). No state, no secrets.
+name = "the-school-floorplan"
+# Cooperative Cloudflare account (not a secret).
+account_id = "c2ce5c0b362e73c6248f4e0d46c6c314"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+routes = [{ pattern = "floorplan.theschool.nyc", custom_domain = true }]

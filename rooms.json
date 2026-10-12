@@ -1,0 +1,248 @@
+{
+  "_about": "Room index for The School. Generated from floorplan.html by scripts/rooms.mjs; edit names there.",
+  "rooms": [
+    {
+      "id": "ll-kitchen",
+      "name": "LL Kitchen",
+      "floorName": "The Refectory Kitchen",
+      "oldName": "Kitchen",
+      "floor": "LL",
+      "sqft": 672,
+      "bookable": true
+    },
+    {
+      "id": "ll-g1",
+      "name": "G1",
+      "floorName": "The Workshop",
+      "oldName": "G1",
+      "floor": "LL",
+      "sqft": 627,
+      "bookable": true
+    },
+    {
+      "id": "ll-g2",
+      "name": "G2",
+      "floorName": "The Studio",
+      "oldName": "G2",
+      "floor": "LL",
+      "sqft": 627,
+      "bookable": true
+    },
+    {
+      "id": "ll-g3",
+      "name": "G3",
+      "floorName": "The Laboratory",
+      "oldName": "G3",
+      "floor": "LL",
+      "sqft": 1096,
+      "bookable": true
+    },
+    {
+      "id": "ll-g4",
+      "name": "G4",
+      "floorName": "The Archive",
+      "oldName": "G4",
+      "floor": "LL",
+      "sqft": 741,
+      "bookable": true
+    },
+    {
+      "id": "ll-loading",
+      "name": "Loading Dock",
+      "floorName": "Loading Dock",
+      "oldName": "Loading Dock",
+      "floor": "LL",
+      "sqft": 777,
+      "bookable": true
+    },
+    {
+      "id": "ll-mech",
+      "name": "Mechanical Room",
+      "floorName": "Mechanical Room",
+      "oldName": "Mechanical Room",
+      "floor": "LL",
+      "sqft": null,
+      "bookable": false
+    },
+    {
+      "id": "1-auditorium",
+      "name": "Auditorium",
+      "floorName": "The Chapter House",
+      "oldName": "Auditorium",
+      "floor": "1",
+      "sqft": 2926,
+      "bookable": true
+    },
+    {
+      "id": "1-stage",
+      "name": "Stage",
+      "floorName": "The Altar",
+      "oldName": "Stage",
+      "floor": "1",
+      "sqft": 325,
+      "bookable": true
+    },
+    {
+      "id": "1-kitchen",
+      "name": "1F Kitchen",
+      "floorName": "The Servery",
+      "oldName": "Kitchen",
+      "floor": "1",
+      "sqft": 297,
+      "bookable": true
+    },
+    {
+      "id": "1-classroom",
+      "name": "Room 1",
+      "floorName": "The Salon",
+      "oldName": "Class Room 1",
+      "floor": "1",
+      "sqft": 616,
+      "bookable": true
+    },
+    {
+      "id": "1-office-lg",
+      "name": "1F Office (Large)",
+      "floorName": "Office",
+      "oldName": "Office (Large)",
+      "floor": "1",
+      "sqft": 268,
+      "bookable": true
+    },
+    {
+      "id": "1-office-md",
+      "name": "1F Office (Medium)",
+      "floorName": "Office",
+      "oldName": "Office (Medium)",
+      "floor": "1",
+      "sqft": 126,
+      "bookable": true
+    },
+    {
+      "id": "1-office-sm",
+      "name": "1F Office (Small)",
+      "floorName": "Office",
+      "oldName": "Office (Small)",
+      "floor": "1",
+      "sqft": 141,
+      "bookable": true
+    },
+    {
+      "id": "2-room7",
+      "name": "Room 7",
+      "floorName": "Cell VII",
+      "oldName": "Class Room 7",
+      "floor": "2",
+      "sqft": 640,
+      "bookable": true
+    },
+    {
+      "id": "2-room8",
+      "name": "Room 8",
+      "floorName": "Cell VIII",
+      "oldName": "Class Room 8",
+      "floor": "2",
+      "sqft": 309,
+      "bookable": true
+    },
+    {
+      "id": "2-room5",
+      "name": "Room 5",
+      "floorName": "Cell V",
+      "oldName": "Class Room 5",
+      "floor": "2",
+      "sqft": 632,
+      "bookable": true
+    },
+    {
+      "id": "2-room4",
+      "name": "Room 4",
+      "floorName": "Cell IV",
+      "oldName": "Class Room 4",
+      "floor": "2",
+      "sqft": 630,
+      "bookable": true
+    },
+    {
+      "id": "2-room3",
+      "name": "Room 3",
+      "floorName": "The Scriptorium",
+      "oldName": "Class Room 3",
+      "floor": "2",
+      "sqft": 700,
+      "bookable": true
+    },
+    {
+      "id": "2-room2",
+      "name": "Room 2",
+      "floorName": "Cell II",
+      "oldName": "Class Room 2",
+      "floor": "2",
+      "sqft": 690,
+      "bookable": true
+    },
+    {
+      "id": "2-room6",
+      "name": "Room 6",
+      "floorName": "Cell VI",
+      "oldName": "Class Room 6",
+      "floor": "2",
+      "sqft": 317,
+      "bookable": true
+    },
+    {
+      "id": "2-office",
+      "name": "2F Office",
+      "floorName": "Office",
+      "oldName": "Office",
+      "floor": "2",
+      "sqft": 174,
+      "bookable": true
+    },
+    {
+      "id": "roof-current",
+      "name": "Roof Deck",
+      "floorName": "The Green",
+      "oldName": "Roof Deck (Current)",
+      "floor": "R",
+      "sqft": null,
+      "bookable": true
+    },
+    {
+      "id": "roof-future",
+      "name": "Roof (future)",
+      "floorName": "The Horizon",
+      "oldName": "Roof (Future Expansion)",
+      "floor": "R",
+      "sqft": null,
+      "bookable": false
+    },
+    {
+      "id": "common-roof",
+      "name": "Roof",
+      "floorName": "The Crown",
+      "oldName": "Roof",
+      "floor": "Common",
+      "sqft": null,
+      "bookable": false
+    },
+    {
+      "id": "common-stairwell",
+      "name": "Stairwell",
+      "floorName": "The Ascent",
+      "oldName": "Stairwell",
+      "floor": "Common",
+      "sqft": 150,
+      "bookable": false
+    },
+    {
+      "id": "common-foyer",
+      "name": "Hallway",
+      "floorName": "The Threshold",
+      "oldName": "Hallway",
+      "floor": "Common",
+      "sqft": 300,
+      "bookable": false
+    }
+  ]
+}
