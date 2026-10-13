@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="The School">
-  <meta property="og:title" content="The School · Founding member interest form">
-  <meta property="og:description" content="A 20,000-square-foot residency, workspace, and events institution in Williamsburg, at the intersection of art and frontier technology. We are assembling 50 founding members to cowork and create together.">
+  <meta property="og:title" content="The School">
+  <meta property="og:description" content="A 20,000-square-foot residency, workspace, and events institution in Williamsburg, at the intersection of art and frontier technology.">
   <meta property="og:url" content="https://theschool.nyc/">
   <meta property="og:image" content="https://theschool.nyc/og.png">
   <meta property="og:image:width" content="1200">
@@ -15,15 +15,9 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <title>The School · Founding member interest form</title>
-  <meta name="description" content="A 20,000-square-foot residency, workspace, and events institution in Williamsburg, at the intersection of art and frontier technology. We are assembling 50 founding members to cowork and create together.">
+  <title>The School</title>
+  <meta name="description" content="A 20,000-square-foot residency, workspace, and events institution in Williamsburg, at the intersection of art and frontier technology.">
 
-  <script>
-    // GPCC Forms (Greenpoint-Compute-Cooperative/gpcc-forms, form "founding-member"):
-    // submissions land in the cooperative's own database and Slack.
-    window.SCHOOL_SURVEY_ENDPOINT = "https://form.theschool.nyc/api/f/founding-member";
-  </script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -440,30 +434,42 @@
       html { scroll-behavior: auto; }
       .live-dot { animation: none; }
     }
+    /* ---------- Doors (home) ---------- */
+    .doors { margin-top: var(--gap); }
+    .door {
+      grid-column: span 3;
+      padding: 28px 28px 26px;
+      min-height: 220px;
+      text-decoration: none;
+      transition: background 0.16s var(--ease), transform 0.16s var(--ease);
+    }
+    .door:hover { background: var(--green); transform: translateY(-2px); }
+    .door .n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .door:hover .n { color: var(--ink); }
+    .door h2 { margin: 18px 0 8px; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.05; letter-spacing: -0.025em; font-weight: 800; }
+    .door p { margin: 0; color: var(--ink-soft); line-height: 1.5; }
+    .door .go { margin-top: auto; padding-top: 26px; font-family: var(--mono); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .door:focus-visible { outline: 3px solid var(--green-deep); outline-offset: 3px; }
+    @media (max-width: 1080px) { .door { grid-column: span 6; } }
+    @media (max-width: 680px) { .door { grid-column: span 12; min-height: 0; padding: 24px; } }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <form id="school-form" class="grid" autocomplete="off">
-
-      <!-- HERO -->
+    <div class="grid">
       <section class="card c-hero">
         <div class="hero-top">
-          <img class="logo-mark" src="logo-mark.png" alt="" aria-hidden="true">
+          <img class="logo-mark" src="/logo-mark.png" alt="" aria-hidden="true">
           <span class="wordmark">The School</span>
         </div>
         <div class="hero-body">
           <p class="hero-pitch">
             A 20,000-square-foot residency, workspace, and events institution in
             Williamsburg, at the intersection of art and frontier technology.
-            We are assembling <b>50 founding members</b> to cowork and create together.
           </p>
-          <a class="aside-cta" href="floorplan.html" style="margin-top:26px;">Explore the floor plan <span aria-hidden="true">→</span></a>
         </div>
-
       </section>
 
-      <!-- LIVE CAM -->
       <section class="card c-cam">
         <div class="cam-feed">
           <div class="cam-fallback" aria-hidden="true"></div>
@@ -471,154 +477,44 @@
             src="https://pub-26ded2d3239743d8aaffae8fd29fa32a.r2.dev/theschool-1080p-no-audio.mp4"></video>
         </div>
       </section>
+    </div>
 
-      <!-- THE QUESTIONNAIRE (one long container) -->
-      <section class="card c-form" id="apply">
-        <div class="form-inner" id="form-fields">
-
-          <div class="form-head">
-            <h2>Founding member interest form</h2>
-            <span class="form-status"><span class="dot"></span>Interest form open</span>
-          </div>
-
-          <fieldset class="fieldset">
-            <div class="fieldset-bar"><h3>About You</h3></div>
-            <div class="pair">
-              <div class="field">
-                <label for="f-name">Name</label>
-                <input id="f-name" type="text" name="name" required>
-              </div>
-              <div class="field">
-                <label for="f-email">Email</label>
-                <input id="f-email" type="email" name="email" required>
-              </div>
-              <div class="field">
-                <label for="f-phone">Phone</label>
-                <input id="f-phone" type="tel" name="phone" autocomplete="tel" required>
-              </div>
-              <div class="field">
-                <label for="f-do">What do you do?</label>
-                <input id="f-do" type="text" name="what_you_do" required>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="fieldset">
-            <div class="fieldset-bar"><h3>What kind of space are you looking for?</h3></div>
-            <p class="q-help">This helps us understand whether founding membership, a dedicated desk, or a room is the right fit.</p>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="workspace_interest" value="Hot desk" required><span>Hot desk</span></label>
-              <label class="opt"><input type="radio" name="workspace_interest" value="Dedicated desk"><span>Dedicated desk</span></label>
-              <label class="opt"><input type="radio" name="workspace_interest" value="Office/studio space"><span>Office / studio space</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="fieldset">
-            <div class="fieldset-bar"><h3>What is your current monthly budget for coworking?</h3></div>
-            <p class="q-help">This does not commit you to a price. It helps us understand what kind of membership would actually fit.</p>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="monthly_budget" value="$300-$500/month" required><span>$300-$500/mo</span></label>
-              <label class="opt"><input type="radio" name="monthly_budget" value="$500-$750/month"><span>$500-$750/mo</span></label>
-              <label class="opt"><input type="radio" name="monthly_budget" value="$750+/month"><span>$750+/mo</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="fieldset">
-            <div class="fieldset-bar"><h3>Your ninja skill</h3></div>
-            <p class="q-help">One thing you could contribute to the community beyond the dues. A workshop you could teach, a project you'd run, a network you'd open, a skill that doesn't go in a bio.</p>
-            <textarea name="ninja_skill" rows="4" required></textarea>
-          </fieldset>
-
-          <fieldset class="fieldset">
-            <div class="fieldset-bar"><h3>How did you hear about The School?</h3></div>
-            <textarea name="referral" rows="3" required></textarea>
-          </fieldset>
-
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFLsrU-_juvQUw02" data-action="founding-member" data-theme="light" style="margin:0 0 18px;min-height:65px"></div>
-
-          <div class="submit-row">
-            <button type="submit" id="submit-btn">Submit interest →</button>
-            <p class="submit-msg" id="submit-msg"></p>
-          </div>
-
-        </div>
-
-        <div id="success-card">
-          <h2>You're <em>in the room.</em></h2>
-          <p>Thank you. We read every one of these. We'll be in touch at the email you left.</p>
-        </div>
-      </section>
-
-      <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
-        <label>Website<input type="text" name="field_hp" tabindex="-1" autocomplete="off"></label>
-      </div>
-    </form>
+    <nav class="grid doors" aria-label="The School">
+      <a class="card door" href="https://form.theschool.nyc/f/events">
+        <span class="n">01</span>
+        <div><h2>Space inquiry</h2><p>Host an event or book a room. Tell us what you have in mind and we'll get back to you.</p></div>
+        <span class="go">Inquire →</span>
+      </a>
+      <a class="card door" href="/patron/">
+        <span class="n">02</span>
+        <div><h2>Patron form</h2><p>Work, make and host here as part of the community.</p></div>
+        <span class="go">Apply →</span>
+      </a>
+      <a class="card door" href="/floorplan.html">
+        <span class="n">03</span>
+        <div><h2>Floor plan</h2><p>Every room in the building, by name and number.</p></div>
+        <span class="go">Explore →</span>
+      </a>
+      <a class="card door" href="/auditorium/">
+        <span class="n">04</span>
+        <div><h2>The Auditorium</h2><p>Our largest room, for shows, talks and screenings.</p></div>
+        <span class="go">Take a look →</span>
+      </a>
+    </nav>
 
     <section class="card c-aside">
       <h3 class="aside-title">Office or studio space?</h3>
-      <p class="q-help">Separate from founding membership. The School has dedicated rooms from 150 to 700 square feet, on monthly tenancy. See the full schedule below, then email <a href="mailto:rentals@theoldschool.nyc">rentals@theoldschool.nyc</a>. Rates are negotiable.</p>
-      <a class="aside-cta" href="rate-sheet.html">Rate Sheet <span aria-hidden="true">→</span></a>
+      <p class="q-help">The School has dedicated rooms from 150 to 700 square feet, on monthly tenancy. See the full schedule, then email <a href="mailto:rentals@theoldschool.nyc">rentals@theoldschool.nyc</a>. Rates are negotiable.</p>
+      <a class="aside-cta" href="/rate-sheet.html">Rate Sheet <span aria-hidden="true">→</span></a>
     </section>
 
     <footer class="foot">
       <span>© The School · 2026</span>
       <div class="right">
-        <a href="floorplan.html">Floor plan</a>
+        <a href="/floorplan.html">Floor plan</a>
         <a href="mailto:rentals@theoldschool.nyc">rentals@theoldschool.nyc</a>
       </div>
     </footer>
   </div>
-
-  <script>
-    (function () {
-      /* submit (endpoint + logic preserved) */
-      const endpoint = window.SCHOOL_SURVEY_ENDPOINT;
-      const form = document.getElementById('school-form');
-      const formFields = document.getElementById('form-fields');
-      const submitBtn = document.getElementById('submit-btn');
-      const submitMsg = document.getElementById('submit-msg');
-      const successCard = document.getElementById('success-card');
-
-      function collect() {
-        const fd = new FormData(form);
-        const out = {};
-        for (const key of new Set(Array.from(fd.keys()))) {
-          const values = fd.getAll(key);
-          out[key] = values.length > 1 ? values : values[0];
-        }
-        return out;
-      }
-
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        submitBtn.disabled = true;
-        const originalLabel = submitBtn.textContent;
-        submitBtn.textContent = 'Sending…';
-        submitMsg.textContent = '';
-        try {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(collect()),
-          });
-          if (!res.ok) {
-            const data = await res.json().catch(() => ({}));
-            const fields = data.fieldErrors ? Object.values(data.fieldErrors) : [];
-            throw new Error(fields.length ? fields.join(' ') : (data.error || ('HTTP ' + res.status)));
-          }
-          formFields.style.display = 'none';
-          successCard.classList.add('show');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } catch (err) {
-          console.error('[school-survey] submit failed', err);
-          submitMsg.textContent = 'Something broke. ' + (err.message || 'try again in a moment.');
-          if (window.turnstile) window.turnstile.reset();
-          submitMsg.style.color = 'oklch(0.55 0.20 25)';
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalLabel;
-        }
-      });
-    })();
-  </script>
 </body>
 </html>

@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The School">
+  <meta property="og:title" content="The School · Patron form">
+  <meta property="og:description" content="A 20,000-square-foot residency, workspace, and events institution in Williamsburg, at the intersection of art and frontier technology. We are assembling 50 founding members to cowork and create together.">
+  <meta property="og:url" content="https://theschool.nyc/patron/">
+  <meta property="og:image" content="https://theschool.nyc/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>The School · Patron form</title>
+  <meta name="description" content="A 20,000-square-foot residency, workspace, and events institution in Williamsburg, at the intersection of art and frontier technology. We are assembling 50 founding members to cowork and create together.">
+
+  <script>
+    // GPCC Forms (Greenpoint-Compute-Cooperative/gpcc-forms, form "founding-member"):
+    // submissions land in the cooperative's own database and Slack.
+    window.SCHOOL_SURVEY_ENDPOINT = "https://form.theschool.nyc/api/f/founding-member";
+  </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: oklch(0.81 0.004 95);
+      --card: oklch(0.96 0.006 95);
+      --card-2: oklch(0.93 0.006 95);
+      --ink: oklch(0.20 0.012 152);
+      --ink-soft: oklch(0.45 0.010 152);
+      --muted: oklch(0.58 0.008 152);
+      --line: oklch(0.20 0.012 152 / 0.10);
+      --line-strong: oklch(0.20 0.012 152 / 0.20);
+      --green: oklch(0.86 0.24 150);
+      --green-deep: oklch(0.66 0.20 150);
+      --red: oklch(0.62 0.21 25);
+
+      --radius: 20px;
+      --radius-sm: 12px;
+      --gap: 14px;
+      --max: 1480px;
+
+      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      padding: 16px;
+    }
+
+    .wrap { max-width: var(--max); margin: 0 auto; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--gap);
+    }
+
+    .card {
+      background: var(--card);
+      color: var(--ink);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .c-hero { grid-column: span 6; padding: 34px 36px 30px; min-height: 460px; }
+    .c-cam  { grid-column: span 6; padding: 0; }
+    .c-form { grid-column: 1 / -1; padding: 0; }
+    .c-aside {
+      margin-top: var(--gap);
+      padding: 56px clamp(36px, 5vw, 72px);
+      display: block;
+    }
+    .aside-title {
+      margin: 0 0 18px;
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .c-aside .q-help { margin: 0 0 30px; line-height: 1.6; }
+    .aside-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 26px;
+      background: var(--ink);
+      color: var(--card);
+      border: 1.5px solid var(--ink);
+      border-radius: 12px;
+      transition: background 0.16s var(--ease), transform 0.16s var(--ease), color 0.16s var(--ease), border-color 0.16s var(--ease);
+    }
+    .aside-cta:hover {
+      transform: translateY(-1px);
+      background: var(--green);
+      color: var(--ink);
+      border-color: var(--green);
+    }
+
+    /* ---------- Eyebrow ---------- */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .eyebrow .lbl { color: var(--ink); font-weight: 700; }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 0 3px oklch(0.62 0.21 25 / 0.20);
+      animation: pulse 2s var(--ease) infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    /* ---------- Hero ---------- */
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4px;
+    }
+    .logo-mark {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+    .wordmark {
+      font-family: var(--mono);
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      word-spacing: -0.4em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .hero-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px 0 0; }
+    .hero-headline {
+      margin: 0;
+      font-weight: 700;
+      font-size: clamp(24px, 2.7vw, 39px);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .hero-pitch {
+      margin: 26px 0 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: 52ch;
+    }
+    .hero-pitch b { color: var(--ink); font-weight: 600; }
+
+    /* ---------- Live cam ---------- */
+    .cam-feed {
+      flex: 1;
+      position: relative;
+      background: var(--ink);
+      aspect-ratio: 16 / 9;
+    }
+    .cam-feed video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.08) brightness(0.92);
+    }
+    .cam-fallback {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, oklch(0.30 0.012 152), oklch(0.16 0.012 152)),
+        repeating-linear-gradient(0deg, transparent 0 2px, oklch(0 0 0 / 0.18) 2px 3px);
+    }
+
+    /* ---------- The form (one long container) ---------- */
+    .form-inner { padding: 40px clamp(28px, 5vw, 64px) 44px; }
+
+    .form-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-bottom: 12px;
+    }
+    .form-head h2 {
+      margin: 0;
+      font-weight: 800;
+      font-size: clamp(26px, 3vw, 40px);
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+    .form-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+    }
+    .form-status .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px oklch(0.86 0.24 150 / 0.18);
+    }
+
+    .fieldset { border: 0; margin: 0; padding: 30px 0; }
+    .fieldset-bar {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .fieldset-bar .step {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .fieldset-bar h3 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+    .field { display: flex; flex-direction: column; gap: 9px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label,
+    .q-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .field label .opt-tag { color: var(--ink-soft); }
+
+    input[type="text"], input[type="email"], input[type="tel"], textarea {
+      width: 100%;
+      font: inherit;
+      font-family: var(--sans);
+      font-size: 16px;
+      color: var(--ink);
+      background: transparent;
+      border: 0;
+      border-bottom: 1.5px solid var(--line-strong);
+      border-radius: 0;
+      padding: 10px 2px;
+      transition: border-color 0.16s var(--ease);
+    }
+    input::placeholder, textarea::placeholder { color: oklch(0.70 0.008 152); }
+    textarea {
+      resize: vertical;
+      min-height: 84px;
+      border: 1.5px solid var(--line-strong);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green-deep);
+    }
+
+    .q-help { font-size: 14px; color: var(--ink-soft); margin: 0 0 14px; max-width: 70ch; }
+    .q-help a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+    .q-help a:hover { color: var(--green-deep); }
+
+    .opts { display: flex; flex-wrap: wrap; gap: 10px; }
+    .opt { cursor: pointer; }
+    .opt input { position: absolute; opacity: 0; pointer-events: none; }
+    .opt span {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+      user-select: none;
+    }
+    .opt:hover span { border-color: var(--ink); }
+    .opt input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--card); }
+    .opt input:focus-visible + span { box-shadow: 0 0 0 3px oklch(0.86 0.24 150 / 0.45); }
+
+    .rentals-note {
+      margin-top: 8px;
+      padding: 20px 22px;
+      background: var(--card-2);
+      border-radius: var(--radius-sm);
+    }
+    .rentals-note .q-label { display: block; margin-bottom: 8px; }
+    .rentals-note p { margin: 0; }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 36px;
+    }
+    .submit-msg {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 0;
+      max-width: 46ch;
+    }
+    button[type="submit"] {
+      font: inherit;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 18px 34px;
+      background: var(--ink);
+      color: var(--card);
+      border: 1.5px solid var(--ink);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.16s var(--ease), transform 0.16s var(--ease), color 0.16s var(--ease);
+    }
+    button[type="submit"]:hover {
+      transform: translateY(-1px);
+      background: var(--green);
+      color: var(--ink);
+      border-color: var(--green);
+    }
+    button[type="submit"]:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* ---------- Success ---------- */
+    #success-card { display: none; padding: 72px clamp(28px, 5vw, 64px); }
+    #success-card.show { display: block; }
+    #success-card h2 {
+      font-weight: 800;
+      font-size: clamp(34px, 5vw, 60px);
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin: 0 0 14px;
+    }
+    #success-card h2 em { font-style: italic; color: var(--green-deep); font-weight: 700; }
+    #success-card p { font-size: 17px; color: var(--ink-soft); max-width: 56ch; margin: 0; }
+
+    /* ---------- Footer ---------- */
+    .foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 14px 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .foot a { color: var(--ink-soft); text-decoration: none; transition: color 0.18s var(--ease); }
+    .foot a:hover { color: var(--green); }
+    .foot .right { display: flex; gap: 22px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1080px) {
+      .c-hero { grid-column: span 12; min-height: 360px; }
+      .c-cam  { grid-column: span 12; }
+    }
+    @media (max-width: 680px) {
+      body { padding: 12px; }
+      .grid { gap: 12px; }
+      .c-hero { padding: 28px 24px; min-height: 0; }
+      .hero-top { gap: 8px; }
+      .logo-mark { width: 44px; height: 44px; }
+      .wordmark { font-size: clamp(24px, 8.4vw, 40px); }
+      .hero-body { padding-top: 28px; }
+      .hero-pitch { margin-top: 18px; }
+      .form-inner { padding: 30px 22px 34px; }
+      .pair { grid-template-columns: 1fr; gap: 20px; }
+      .submit-row { flex-direction: column; align-items: stretch; }
+      .submit-row button { width: 100%; }
+      .foot { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .live-dot { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <form id="school-form" class="grid" autocomplete="off">
+
+      <!-- HERO -->
+      <section class="card c-hero">
+        <div class="hero-top">
+          <a href="/" style="display:contents;color:inherit;text-decoration:none"><img class="logo-mark" src="/logo-mark.png" alt="" aria-hidden="true">
+          <span class="wordmark">The School</span></a>
+        </div>
+        <div class="hero-body">
+          <p class="hero-pitch">
+            A 20,000-square-foot residency, workspace, and events institution in
+            Williamsburg, at the intersection of art and frontier technology.
+            We are assembling <b>50 founding members</b> to cowork and create together.
+          </p>
+          <a class="aside-cta" href="/floorplan.html" style="margin-top:26px;">Explore the floor plan <span aria-hidden="true">→</span></a>
+        </div>
+
+      </section>
+
+      <!-- LIVE CAM -->
+      <section class="card c-cam">
+        <div class="cam-feed">
+          <div class="cam-fallback" aria-hidden="true"></div>
+          <video autoplay muted loop playsinline preload="metadata"
+            src="https://pub-26ded2d3239743d8aaffae8fd29fa32a.r2.dev/theschool-1080p-no-audio.mp4"></video>
+        </div>
+      </section>
+
+      <!-- THE QUESTIONNAIRE (one long container) -->
+      <section class="card c-form" id="apply">
+        <div class="form-inner" id="form-fields">
+
+          <div class="form-head">
+            <h2>Patron form</h2>
+            <span class="form-status"><span class="dot"></span>Interest form open</span>
+          </div>
+
+          <fieldset class="fieldset">
+            <div class="fieldset-bar"><h3>About You</h3></div>
+            <div class="pair">
+              <div class="field">
+                <label for="f-name">Name</label>
+                <input id="f-name" type="text" name="name" required>
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" type="email" name="email" required>
+              </div>
+              <div class="field">
+                <label for="f-phone">Phone</label>
+                <input id="f-phone" type="tel" name="phone" autocomplete="tel" required>
+              </div>
+              <div class="field">
+                <label for="f-do">What do you do?</label>
+                <input id="f-do" type="text" name="what_you_do" required>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <div class="fieldset-bar"><h3>What kind of space are you looking for?</h3></div>
+            <p class="q-help">This helps us understand whether founding membership, a dedicated desk, or a room is the right fit.</p>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="workspace_interest" value="Hot desk" required><span>Hot desk</span></label>
+              <label class="opt"><input type="radio" name="workspace_interest" value="Dedicated desk"><span>Dedicated desk</span></label>
+              <label class="opt"><input type="radio" name="workspace_interest" value="Office/studio space"><span>Office / studio space</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <div class="fieldset-bar"><h3>What is your current monthly budget for coworking?</h3></div>
+            <p class="q-help">This does not commit you to a price. It helps us understand what kind of membership would actually fit.</p>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="monthly_budget" value="$300-$500/month" required><span>$300-$500/mo</span></label>
+              <label class="opt"><input type="radio" name="monthly_budget" value="$500-$750/month"><span>$500-$750/mo</span></label>
+              <label class="opt"><input type="radio" name="monthly_budget" value="$750+/month"><span>$750+/mo</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <div class="fieldset-bar"><h3>Your ninja skill</h3></div>
+            <p class="q-help">One thing you could contribute to the community beyond the dues. A workshop you could teach, a project you'd run, a network you'd open, a skill that doesn't go in a bio.</p>
+            <textarea name="ninja_skill" rows="4" required></textarea>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <div class="fieldset-bar"><h3>How did you hear about The School?</h3></div>
+            <textarea name="referral" rows="3" required></textarea>
+          </fieldset>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFLsrU-_juvQUw02" data-action="founding-member" data-theme="light" style="margin:0 0 18px;min-height:65px"></div>
+
+          <div class="submit-row">
+            <button type="submit" id="submit-btn">Submit interest →</button>
+            <p class="submit-msg" id="submit-msg"></p>
+          </div>
+
+        </div>
+
+        <div id="success-card">
+          <h2>You're <em>in the room.</em></h2>
+          <p>Thank you. We read every one of these. We'll be in touch at the email you left.</p>
+        </div>
+      </section>
+
+      <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+        <label>Website<input type="text" name="field_hp" tabindex="-1" autocomplete="off"></label>
+      </div>
+    </form>
+
+    <section class="card c-aside">
+      <h3 class="aside-title">Office or studio space?</h3>
+      <p class="q-help">Separate from patronage. The School has dedicated rooms from 150 to 700 square feet, on monthly tenancy. See the full schedule below, then email <a href="mailto:rentals@theoldschool.nyc">rentals@theoldschool.nyc</a>. Rates are negotiable.</p>
+      <a class="aside-cta" href="/rate-sheet.html">Rate Sheet <span aria-hidden="true">→</span></a>
+    </section>
+
+    <footer class="foot">
+      <span>© The School · 2026</span>
+      <div class="right">
+        <a href="/floorplan.html">Floor plan</a>
+        <a href="mailto:rentals@theoldschool.nyc">rentals@theoldschool.nyc</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      /* submit (endpoint + logic preserved) */
+      const endpoint = window.SCHOOL_SURVEY_ENDPOINT;
+      const form = document.getElementById('school-form');
+      const formFields = document.getElementById('form-fields');
+      const submitBtn = document.getElementById('submit-btn');
+      const submitMsg = document.getElementById('submit-msg');
+      const successCard = document.getElementById('success-card');
+
+      function collect() {
+        const fd = new FormData(form);
+        const out = {};
+        for (const key of new Set(Array.from(fd.keys()))) {
+          const values = fd.getAll(key);
+          out[key] = values.length > 1 ? values : values[0];
+        }
+        return out;
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        const originalLabel = submitBtn.textContent;
+        submitBtn.textContent = 'Sending…';
+        submitMsg.textContent = '';
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(collect()),
+          });
+          if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            const fields = data.fieldErrors ? Object.values(data.fieldErrors) : [];
+            throw new Error(fields.length ? fields.join(' ') : (data.error || ('HTTP ' + res.status)));
+          }
+          formFields.style.display = 'none';
+          successCard.classList.add('show');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+          console.error('[school-survey] submit failed', err);
+          submitMsg.textContent = 'Something broke. ' + (err.message || 'try again in a moment.');
+          if (window.turnstile) window.turnstile.reset();
+          submitMsg.style.color = 'oklch(0.55 0.20 25)';
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
