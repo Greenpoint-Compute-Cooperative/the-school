@@ -92,19 +92,39 @@ async function linksResolve(page, ctx) {
 
 // ── theschool.nyc ────────────────────────────────────────────────────────────
 
-await test("home: School copy, favicon, preview, links", async ({ page, ctx }) => {
-  await pageBasics(page, ctx, `${SITE}/`, "The School · Founding member interest form");
+await test("home: School copy, favicon, preview, four doors", async ({ page, ctx }) => {
+  await pageBasics(page, ctx, `${SITE}/`, "The School");
   check((await page.locator(".wordmark").first().innerText()).trim().toLowerCase() === "the school", "wordmark");
   check((await linksResolve(page, ctx)) > 3, "too few links found");
+  const doors = await page.locator("a.door").evaluateAll((as) => as.map((a) => [a.querySelector("h2").textContent.trim(), a.getAttribute("href")]));
+  check(
+    JSON.stringify(doors) ===
+      JSON.stringify([["Space inquiry", EVENT_FORM], ["Patron form", "/patron/"], ["Floor plan", "/floorplan.html"], ["The Auditorium", "/auditorium/"]]),
+    `doors ${JSON.stringify(doors)}`,
+  );
 });
 
-await test("home: founding-member form posts to GPCC Forms (intercepted)", async ({ page }) => {
+await test("home on a phone: doors stack, no sideways scroll", async ({ page }) => {
+  await page.goto(`${SITE}/`);
+  const m = await page.evaluate(() => ({ vw: innerWidth, sw: document.documentElement.scrollWidth }));
+  check(m.sw <= m.vw, `horizontal scroll: ${m.sw} > ${m.vw}`);
+  const boxes = await page.locator("a.door").evaluateAll((as) => as.map((a) => a.getBoundingClientRect().width));
+  check(boxes.every((w) => w > m.vw * 0.8), `doors not full width: ${boxes}`);
+}, { device: "iPhone 13" });
+
+await test("patron: page basics and links", async ({ page, ctx }) => {
+  await pageBasics(page, ctx, `${SITE}/patron/`, "The School · Patron form");
+  check((await page.locator("h2").first().innerText()).trim() === "Patron form", "heading");
+  await linksResolve(page, ctx);
+});
+
+await test("patron: form posts to GPCC Forms founding-member (intercepted)", async ({ page }) => {
   let posted = null;
   await page.route("**/api/f/founding-member", async (route) => {
     posted = { url: route.request().url(), body: JSON.parse(route.request().postData() || "{}") };
     await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
   });
-  await page.goto(`${SITE}/`);
+  await page.goto(`${SITE}/patron/`);
   await page.fill("#f-name", "Ada Lovelace");
   await page.fill("#f-email", "ada.lovelace@example.org");
   await page.fill("#f-phone", "555-0100");
